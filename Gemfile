@@ -11,8 +11,11 @@ ruby "2.4.2"
 gem "jekyll", "~> 3.8.2"
 gem 'rack-jekyll'
 
-# This is the default theme for new Jekyll sites. You may change this to anything you like.
+# THEME
 gem "minima", "~> 2.0"
+gem "jekyll-theme-awesome"
+gem 'jekyll-theme-midnight', '~> 0.0.4'
+gem 'jekyll-theme-hydejack', '~> 7.5'
 
 # If you want to use GitHub Pages, remove the "gem "jekyll"" above and
 # uncomment the line below. To upgrade, run `bundle update github-pages`.

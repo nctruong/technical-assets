@@ -49,6 +49,8 @@ GEM
     pathutil (0.16.1)
       forwardable-extended (~> 2.6)
     public_suffix (3.0.2)
+    puma (3.11.4)
+    rake (12.3.1)
     rb-fsevent (0.10.3)
     rb-inotify (0.9.10)
       ffi (>= 0.5.0, < 2)
@@ -68,6 +70,8 @@ DEPENDENCIES
   jekyll (~> 3.8.2)
   jekyll-feed (~> 0.6)
   minima (~> 2.0)
+  puma
+  rake
   tzinfo-data
 
 BUNDLED WITH

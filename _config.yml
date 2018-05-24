@@ -42,5 +42,5 @@ plugins:
 #   - vendor/gems/
 #   - vendor/ruby/
 #port: 90
-gems: ['kramdown']
+plugins: ['kramdown']
 exclude: ['config.ru', 'Gemfile', 'Gemfile.lock', 'vendor', 'Procfile', 'Rakefile']

@@ -231,3 +231,11 @@ git checkout develop
 git merge --no-ff hotfix-1.2.1.2
 git branch -d hotfix-1.2.1
 ```
+
+## Forcing pull to override local files
+
+```bash
+git fetch --all
+git reset --hard origin/master
+git pull origin master
+```

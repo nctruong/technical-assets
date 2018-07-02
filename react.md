@@ -4,6 +4,28 @@ title: React
 permalink: /react/
 ---
 
+## Basic components
+
+#### Functional Component
+
+```react
+function Welcome(props) {
+  return <h1>Hello, {props.name}</h1>;
+}
+
+const element = <Welcome name="Sara" />;
+```
+
+- Single props and returns react element.
+
+#### User-defined component
+
+ ```react
+const element = <Welcome name="Sara" />;
+ ```
+
+- Passing all of attributes to a single object, props.
+
 ## React on ES6+
 
 - [class definition syntax](https://babeljs.io/docs/learn-es2015/#classes)
@@ -32,6 +54,38 @@ class Photo extends React.Component {
 }
 
 ```
+
+#### Bind `this`
+
+```react
+class LoggingButton extends React.Component {
+  // This syntax ensures `this` is bound within handleClick.
+  // Warning: this is *experimental* syntax.
+  handleClick = () => {
+    console.log('this is:', this);
+  }
+
+  render() {
+    return (
+      <button onClick={this.handleClick}>
+        Click me
+      </button>
+    );
+  }
+}
+```
+
+#### Inline If with Logical && Operator
+
+[**Try it on CodePen**](https://codepen.io/gaearon/pen/ozJddz?editors=0010)
+
+```react
+{isLoggedIn ? 'currently' : 'not'}
+```
+
+#### Preventing Component from Rendering
+
+[**Tr it on CodePen**](https://codepen.io/gaearon/pen/Xjoqwm?editors=0010)
 
 ## Lifecycle Methods
 
@@ -73,7 +127,7 @@ Various methods are executed at specific points in a component's lifecycle:
   - Invoked immediately before a component is unmounted from the DOM.
   - Perform any necessary cleanup in this method, such as invalidating timers or cleaning up any DOM elements that were created in `componentDidMount`.
 
-## Basic Class
+#### Basic Class
 
 ```html
 var Hello = React.createClass({
@@ -86,7 +140,7 @@ var Hello = React.createClass({
 
 React.render(<Hello />, document.getElementById('app'));
 ```
-## Initial States
+#### Initial States
 
 ```html
 var GreetUser = React.createClass({
@@ -145,7 +199,7 @@ render: function(){
 }
 ```
 
-## Lists
+#### Lists
 
 ```html
 var MyList = React.createClass({
@@ -157,6 +211,29 @@ var MyList = React.createClass({
   }
 });
 ```
+
+[**Try it on CodePen**](https://codepen.io/gaearon/pen/GjPyQr?editors=0011)
+
+[**Try it on CodePen**](https://codepen.io/gaearon/pen/jrXYRR?editors=0011)
+
+#### Form
+
+[**Try it on CodePen**](https://codepen.io/gaearon/pen/VmmPgp?editors=0010)
+
+- Form's data is always managed in State.
+- Handling form's event by setState.
+
+[**Extra samples**](https://reactjs.org/docs/forms.html)
+
+## Thinking in React
+
+Five steps to do things in react:
+
+1. Break the UI into a compoent hierarchy.
+2. Build a static version in react.
+3. Identify the minimal (but complete) representation of UI State.
+4. Identify where your state shold live.
+5. Add inverse data flow.
 
 ## Reference
 

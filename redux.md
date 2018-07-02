@@ -5,6 +5,41 @@ permalink: /redux/
 ---
 Redux is a predictable state container for JavaScript apps.
 
+## Basic concepts
+
+#### Dispatch
+
+```react
+export const login = () => async (dispatch) => {
+  const { json } = await loginToSoundCloud(CLIENT_ID);
+  const { oauthToken } = json;
+  Cookies.set(COOKIE_PATH, oauthToken);
+
+  dispatch(loginSuccess(oauthToken));
+  dispatch(fetchSessionData(oauthToken));
+};
+const loginSuccess = oauthToken => ({
+  type: types.LOGIN_SUCCESS,
+  oauthToken,
+});
+```
+
+- `async` is asynchronous actions.
+- dispatched actions need to have type: `loginSuccess`
+- reducers listen on `dispatched actions` and map with proper types to get exact data.
+- no matter wherever `dispatched` actions involved, reducers always `listen` on these functions to push data to `connected` react components where map state to props - amazing, react uses a lot of callback function. Dispatched function is callback function. Don't care wherever these callbacks involved.
+
+## API
+
+#### mapStateToProps
+
+- connect state from the store to corresponding props
+- make it possible to access your reducer state objects from within your React components.
+- subscribe to the Redux store and any updates will update props automatically
+- the `key is the new prop name` to be used in the React app and the `value is the name of the reducer` function.
+
+#### mapDispatchToProps
+
 ### Create a store
 
 ```js

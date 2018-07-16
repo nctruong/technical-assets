@@ -19,3 +19,10 @@ bucket.put_object(
       key: self.path, body: file_content, acl: 'public-read',
       content_disposition: %{attachment; filename="#{file_content.original_filename}"})
 ```
+#### DELETE
+```
+def delete_s3_file
+  file = Aws::S3::Resource.new.bucket(ENV['AWS_S3_BUCKET']).object(self.path)
+  file.delete if file.present?
+end
+```

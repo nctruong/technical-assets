@@ -1,6 +1,6 @@
 _site
 .sass-cache
 .jekyll-metadata
-/.idea
-/.ruby-version
-/log
+.idea
+.ruby-version
+log

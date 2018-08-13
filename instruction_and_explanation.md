@@ -1,11 +1,33 @@
 ## Some Results
-### Tests
-### Results
+![](https://lh3.googleusercontent.com/-K1BcXaqtqMc/W3EBvIxSFtI/AAAAAAAAbI8/U_F4BtWBH08ahUi4dcXgDRM3dKMVbLTnACL0BGAs/w1060-d-h328-n-rw/Screen%2BShot%2B2018-08-13%2Bat%2B10.57.17.png)
 
 ## Instruction
 ### Installation
+Make sure that you're using `ruby 2.5.1`
+```
+gem install bundler
+```
+
+Installing gems for testing and debugging.
+```
+bundle install
+```
+
 ### Run tests
+Run all test cases.
+
+```
+bundle exec rspec
+```
 ### Run main program
+Edit data/input.txt file if you want to change the input. (this file contains sample input provided as default).
+```
+AB5, BC4, CD8, DC8, DE6, AD5, CE2, EB3, AE7
+```
+
+```
+bundle exec rake
+```
 
 ## Explanation
 ### Solution
@@ -14,7 +36,7 @@ Because I was excited at first problem so that I chose it.
 
 According to the requirement, we have 10 outputs corresponding 10 small cases.
 #### Case#1 to Case#5
-After get the route as an argument, for example `case#` 'A-B-C', we split this route to smaller, direct route like 'A-B' and 'B-C'. Then, we look or each route in the input to get the distance. If the result not found, the distance is nil, we show 'NO SUCH ROUTE'.
+After get the route as an argument, for example `case#1` 'A-B-C', we split this route to smaller, direct route like 'A-B' and 'B-C'. Then, we look for each route in the input to get the distance. If the result not found, the distance is nil, we show 'NO SUCH ROUTE'.
 ```
 def distance
   exists? ? total_distance : 'NO SUCH ROUTE'
@@ -53,7 +75,7 @@ It's not only `BC`: A**BCBCBCBCBCBCBCBCBCBCBCBCBCBCBCBCBCBCBCBCBCBCBCBCBCBCBCBCB
 
 But we also have: AB**CDCDCDCDCDCDCDCDCDCDCDCDCDCDCDCDCDCDCDCDCDCDCDCDCDCDCD**CD.
 
-My solution is: I find the direct route with shortest direct distance. Because we want to find the route with maximum stops (in case of round trips) but it's distance is less than a number like 30.
+My solution is: I find the direct route with shortest direct distance. Because we want to find the route with maximum stops (in case of round trips) but its distance is less than a number like 30.
 
 => The maximum stops = number / mininum distance of direct route.
 
@@ -70,6 +92,10 @@ Classes:
 - TwoPointsRoute: this is the class which inherits `Route`. Because this class is a `Route` but it's the direct route between two points (towns). It also provides the functions needed to query data from memory as class methods.
 - Trip: according to the requirement, we have to deal with trips. Doing a bunch of things to calculate the number of trips, distance, finding out the shortest trip, based on the number of stops, starting and ending point. `Trip` class inherits `Route` because a trip is also a `Route` but it has extra behaviors.
 
+Modules:
+- RouteFinder: providing indepedent methods to find foutes as its name.
+- RouteProcessor: providing independent methods to deal with routes as its name.
+
 ### Easy to maintain
 In order to decouple regular changeable code from less changeable code, we split Trip's independent methods into two modules `RouteFinder` and `RouteProcessor`. Each module has single responsibility as it's name. Trip inherits Route to reuse the attributes and methods. Logically, Trip is a Route. TwoPointsRoute is same. 
 
@@ -82,7 +108,7 @@ Code is clean:
 
 ### Easy to use
 - The responsibility of each class and module is clear enough to know.
-- Each Route and Trip we can provide any starting point and ending point (towns) and involving it's behaviours to get the results.
+- Each Route and Trip we can provide any starting point and ending point (towns) and involving it's behaviors to get the results.
 
 ### Easy to evolve
 - In future, if we want to add extra behaviors to Trip, just add extra public methods, including modules if necessary.

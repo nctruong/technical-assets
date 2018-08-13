@@ -25,7 +25,7 @@ def exists?
 end
 ```
 
-### Case#6 and Case#7
+#### Case#6 and Case#7
 As we all know about the algorithms for finding routes, I developed a recursive function to find all of routes. 
 ```
 module RouteFinder
@@ -35,27 +35,33 @@ end
 ```
 The results depend on the number of stops we want to have in these routes.
 
-### Case#8 and Case#9
+#### Case#8 and Case#9
 We can find all of routes from a starting point to a ending point as above. Now we find the route with minimum of distance. It leads to find a min value.
 
-### Case#10
+#### Case#10
 This is the most complex case. At first glance, we think we will find all of routes from C to C and then calculate the distance to see if it's less than 30. However, there are a lot of round trips. For example
-- Input: 'AB2', 'BC3', 'CB4', 'CD5', 'DC6'
-With above input we can have this kind of trip: ABCBCBCBCBCBCBCBCBCBCBCBCBCBCBCBCBCBCBCBCBCBCBCBCBCBCBCBCBCBCBCBCBCBCD. This is the route we found form `A` to `D`.
-In fact, we will have a lot of small round strip at the middle of route. It's not only `BC`.
 
-A**BCBCBCBCBCBCBCBCBCBCBCBCBCBCBCBCBCBCBCBCBCBCBCBCBCBCBCBCBCBCBCBCBCBC**D
+Input: 'AB2', 'BC3', 'CB4', 'CD5', 'DC6'
 
-But also we have: AB**CDCDCDCDCDCDCDCDCDCDCDCDCDCDCDCDCDCDCDCDCDCDCDCDCDCDCD**CD.
+With above input we can have this kind of trip: ABCBCBCBCBCBCBCBCBCBCBCBCBCBCBCBCBCBCBCBCBCBCBCBCBCBCBCBCBCBCBCBCBCBCD. 
 
-My solution is: I find the direct route with shortest direct distance. Because if we want to find the route with:
-- Maximum stops
-- Its distance is less than a number
-=> The maximum stops = number / mininum direct route.
-Regarding to the sample input provide of this problem: AB5, BC4, CD8, DC8, DE6, AD5, CE2, EB3, AE7.
-The route with minimum distance is CE2. CE has distance is 2 => max stops = 30/2 = 15.
+This is the route we found from `A` to `D`.
+
+In fact, we will have a lot of small round strips at the middle of route.
+
+It's not only `BC`: A**BCBCBCBCBCBCBCBCBCBCBCBCBCBCBCBCBCBCBCBCBCBCBCBCBCBCBCBCBCBCBCBCBCBC**D
+
+But we also have: AB**CDCDCDCDCDCDCDCDCDCDCDCDCDCDCDCDCDCDCDCDCDCDCDCDCDCDCD**CD.
+
+My solution is: I find the direct route with shortest direct distance. Because we want to find the route with maximum stops (in case of round trips) but it's distance is less than a number like 30.
+
+=> The maximum stops = number / mininum distance of direct route.
+
+Regarding to the sample input provided of this problem: AB5, BC4, CD8, DC8, DE6, AD5, CE2, EB3, AE7.
+
+The route with minimum distance is CE2. CE has distance is 2 => `max stops = 30/2 = 15`.
+
 It leads to solve the Case#6
-
 
 I developed three main classes and two modules. 
 
@@ -65,4 +71,21 @@ Classes:
 - Trip: according to the requirement, we have to deal with trips. Doing a bunch of things to calculate the number of trips, distance, finding out the shortest trip, based on the number of stops, starting and ending point. `Trip` class inherits `Route` because a trip is also a `Route` but it has extra behaviors.
 
 ### Easy to maintain
+In order to decouple regular changeable code from less changeable code, we split Trip's independent methods into two modules `RouteFinder` and `RouteProcessor`. Each module has single responsibility as it's name. Trip inherits Route to reuse the attributes and methods. Logically, Trip is a Route. TwoPointsRoute is same. 
+
+Code is clean:
+
+- Each class has enough public methods to use for the requirement. The private methods are the changeable methods but public methods aren't or they rarely change.
+- Each method has single responsibility and the method's name is readable and understandable.
+- Each class and method is short enough. 
+- The Unit Tests and Integration test provided with 100% of coverage to make our code reliable.
+
+### Easy to use
+- The responsibility of each class and module is clear enough to know.
+- Each Route and Trip we can provide any starting point and ending point (towns) and involving it's behaviours to get the results.
+
 ### Easy to evolve
+- In future, if we want to add extra behaviors to Trip, just add extra public methods, including modules if necessary.
+- We can reuse any behaviors. 
+- I made classes, modules and methods independent as much as possible so that make it easy to make changes with less cost of time. 
+

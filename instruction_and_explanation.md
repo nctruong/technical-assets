@@ -97,14 +97,14 @@ Modules:
 - RouteProcessor: providing independent methods to deal with routes as its name.
 
 ### Easy to maintain
-In order to decouple regular changeable code from less changeable code, we split Trip's independent methods into two modules `RouteFinder` and `RouteProcessor`. Each module has single responsibility as it's name. Trip inherits Route to reuse the attributes and methods. Logically, Trip is a Route. TwoPointsRoute is same. 
+In order to `decouple` regular changeable code from less changeable code, we split Trip's independent methods into two modules `RouteFinder` and `RouteProcessor`. Each module has `single responsibility` as it's name. Trip inherits Route to `reuse` the attributes and methods. Logically, Trip is a Route. TwoPointsRoute is same. 
 
 Code is clean:
 
 - Each class has enough public methods to use for the requirement. The private methods are the changeable methods but public methods aren't or they rarely change.
-- Each method has single responsibility and the method's name is readable and understandable.
+- Each method has `single responsibility` and the method's name is `readable` and `understandable`.
 - Each class and method is short enough. 
-- The Unit Tests and Integration test provided with 100% of coverage to make our code reliable.
+- The Unit Tests and Integration test provided with `100% of coverage` to make our code `reliable`.
 
 ### Easy to use
 - The responsibility of each class and module is clear enough to know.
@@ -113,5 +113,5 @@ Code is clean:
 ### Easy to evolve
 - In future, if we want to add extra behaviors to Trip, just add extra public methods, including modules if necessary.
 - We can reuse any behaviors. 
-- I made classes, modules and methods independent as much as possible so that make it easy to make changes with less cost of time. 
+- I made classes, modules and methods independent as much as possible so that make it easy to make changes with `less cost of time`. 
 

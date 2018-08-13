@@ -42,11 +42,19 @@ We can find all of routes from a starting point to a ending point as above. Now 
 This is the most complex case. At first glance, we think we will find all of routes from C to C and then calculate the distance to see if it's less than 30. However, there are a lot of round trips. For example
 - Input: 'AB2', 'BC3', 'CB4', 'CD5', 'DC6'
 With above input we can have this kind of trip: ABCBCBCBCBCBCBCBCBCBCBCBCBCBCBCBCBCBCBCBCBCBCBCBCBCBCBCBCBCBCBCBCBCBCD. This is the route we found form `A` to `D`.
-In fact, we will have a lot of small round strip at the middle of route. It's not only `BC. A`BCBCBCBCBCBCBCBCBCBCBCBCBCBCBCBCBCBCBCBCBCBCBCBCBCBCBCBCBCBCBCBCBCBC`D
+In fact, we will have a lot of small round strip at the middle of route. It's not only `BC`.
 
-But also we have: ABCDCDCDCDCDCDCDCDCDCDCDCDCDCDCDCDCDCDCDCDCDCDCDCDCDCDCDCD.
+A**BCBCBCBCBCBCBCBCBCBCBCBCBCBCBCBCBCBCBCBCBCBCBCBCBCBCBCBCBCBCBCBCBCBC**D
 
+But also we have: AB**CDCDCDCDCDCDCDCDCDCDCDCDCDCDCDCDCDCDCDCDCDCDCDCDCDCDCD**CD.
 
+My solution is: I find the direct route with shortest direct distance. Because if we want to find the route with:
+- Maximum stops
+- Its distance is less than a number
+=> The maximum stops = number / mininum direct route.
+Regarding to the sample input provide of this problem: AB5, BC4, CD8, DC8, DE6, AD5, CE2, EB3, AE7.
+The route with minimum distance is CE2. CE has distance is 2 => max stops = 30/2 = 15.
+It leads to solve the Case#6
 
 
 I developed three main classes and two modules. 
